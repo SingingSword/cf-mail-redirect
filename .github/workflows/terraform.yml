@@ -39,15 +39,15 @@ jobs:
         uses: hashicorp/setup-terraform@v2
 
       - name: Terraform Format
-        run: terraform fmt -check
+        run: terraform -chdir=tf fmt -check 
 
       - name: Terraform Init
-        run: terraform init 
+        run: terraform -chdir=tf init 
 
       - name: Terraform Plan
         id: plan
         if: github.event_name == 'pull_request'
-        run: terraform plan -no-color
+        run: terraform -chdir=tf plan -no-color
         continue-on-error: true
 
       - name: Update Pull Request
@@ -81,4 +81,4 @@ jobs:
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: terraform apply -auto-approve
+        run: terraform -chdir=tf apply -auto-approve
