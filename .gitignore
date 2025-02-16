@@ -1,0 +1,7 @@
+temp/
+*/.terraform
+*/.terraform.lock.hcl
+.env
+.credentials
+tf/errored.tfstate
+security/*pem
